@@ -1,0 +1,127 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% comment %} BLOCO DE TITULO DO SITE {% endcomment %}
+{% block title %} - Histórico{% endblock %}
+{% block name_page %}Histórico{% endblock %}
+{% block tree_site %}{% endblock %}
+
+{% block head %}
+    {% comment %} DataTables {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/DataTables/datatables.min.css' %}">
+{% endblock %}
+
+{% comment %} BLOCO DO CORPO DO HTML {% endcomment %}
+{% block body %}
+
+    {% include 'message.html' %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-default">
+                {% comment %} CARD HEADER {% endcomment %}
+                <div class="card-header">
+                    <h3 class="card-title text-black-50">Histórico</h3>
+                </div>
+
+                {% comment %} CARD BODY {% endcomment %}
+                <div class="card-body mt-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <table id="table" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th id="">#</th>
+                                        <th id="">Criado por</th>
+                                        <th id="">Data início</th>
+                                        <th id="">Data início</th>
+                                        <th id="">Tipo arquivo</th>
+                                        <th id="">Arquivo</th>
+                                        <th id="">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in object_list %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ item.criado_por.get_full_name }}</td>
+                                        <td>{{ item.data_inicio }}</td>
+                                        <td>{{ item.data_final|default_if_none:"" }}</td>
+                                        <td>{{ item.file.get_tipo_arquivo_display }}</td>
+                                        <td>{{ item.file.file.name }}</td>
+                                        <td>
+                                            <span class="badge
+                                                {% if item.status == "P" %}badge-warning
+                                                {% elif item.status == "F" %}badge-success
+                                                {% else %}badge-danger{% endif %}" title="Status" >{{ item.get_status_display }}</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                {% comment %} CARD FOOTER {% endcomment %}
+                <div class="card-footer">
+                    <div class="float-right">
+                        <a class="btn btn-secondary mx-1" href="{% url 'home' %}">
+                            <em class="fas fa-arrow-left"></em>
+                            <span class="ml-2 hide-on-mobile">Voltar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block script %}
+    {% comment %} DataTables {% endcomment %}
+    <script src="{% static 'plugins/DataTables/datatables.min.js' %}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#table').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "ordering": true,
+                "order": [],
+                "pageLength": 25,
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                "searching": true,
+                "info": true,
+                "autoWidth": false,
+                "cell-border": false,
+                "responsive": true,
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "Nenhum registro encontrado",
+                    "info":           "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "infoEmpty":      "Mostrando 0 até 0 de 0 registros",
+                    "infoFiltered":   "(Filtrados de _MAX_ registros)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "_MENU_ resultados por página",
+                    "loadingRecords": "Carregando...",
+                    "processing":     "Processando...",
+                    "search":         "Busca:",
+                    "zeroRecords":    "Nenhum registro encontrado",
+                    "paginate": {
+                        "next":       "Próximo",
+                        "previous":   "Anterior",
+                        "first":      "Primeiro",
+                        "last":       "Último",
+                    },
+                    "aria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

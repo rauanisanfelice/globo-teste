@@ -1,18 +1,11 @@
 {% extends 'template.html' %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% comment %} BLOCO DE TITULO DO SITE {% endcomment %}
 {% block title %} - Pipeline{% endblock %}
 {% block name_page %}Pipeline{% endblock %}
 {% block tree_site %}{% endblock %}
-
-{% comment %} BLOCO HEAD {% endcomment %}
-{% block head %}
-
-    {% comment %} Intro JS {% endcomment %}
-    <link rel="stylesheet" type="text/css" href="{% static 'plugins/intro-js6.0.0/css/intro.min.css' %}">
-
-{% endblock %}
 
 {% comment %} BLOCO DO CORPO DO HTML {% endcomment %}
 {% block body %}
@@ -23,27 +16,35 @@
         <div class="col-md-12">
             <div class="card card-default">
 
-                {% comment %} CARD HEADER {% endcomment %}
-                <div class="card-header">
-                    <h3 class="card-title text-black-50">Processar pipeline de tempo disponíveis para anúncios.</h3>
-                </div>
+                <form method="POST" action="#" id="form" enctype="multipart/form-data">{% csrf_token %}
 
-                {% comment %} CARD BODY {% endcomment %}
-                <div class="card-body mt-4">
-                    <div class="row">
-
+                    {% comment %} CARD HEADER {% endcomment %}
+                    <div class="card-header">
+                        <h3 class="card-title text-black-50">Processar pipeline de tempo disponíveis para anúncios.</h3>
                     </div>
-                </div>
 
-                {% comment %} CARD FOOTER {% endcomment %}
-                <div class="card-footer">
-                    <div class="float-right">
-                        <button type="submit" form="form" class="btn btn-primary mx-1">
-                            <em class="fas fa-filter"></em>
-                            <span class="ml-2 hide-on-mobile">Processar</span>
-                        </button>
+                    {% comment %} CARD BODY {% endcomment %}
+                    <div class="card-body mt-4">
+                        <div class="row">
+                            {% bootstrap_form form %}
+                        </div>
                     </div>
-                </div>
+
+                    {% comment %} CARD FOOTER {% endcomment %}
+                    <div class="card-footer">
+                        <div class="float-right">
+                            <a class="btn btn-secondary mx-1" href="{% url 'home' %}">
+                                <em class="fas fa-arrow-left"></em>
+                                <span class="ml-2 hide-on-mobile">Voltar</span>
+                            </a>
+                            <button type="submit" form="form" class="btn btn-primary mx-1" onclick="load_page();">
+                                <em class="fas fa-filter"></em>
+                                <span class="ml-2 hide-on-mobile">Processar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
