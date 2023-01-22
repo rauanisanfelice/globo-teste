@@ -1,0 +1,73 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% comment %} BLOCO DE TITULO DO SITE {% endcomment %}
+{% block title %} - Pipelines{% endblock %}
+{% block name_page %}Pipelines{% endblock %}
+{% block tree_site %}{% endblock %}
+
+{% comment %} BLOCO HEAD {% endcomment %}
+{% block head %}
+
+    {% comment %} Intro JS {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/intro-js6.0.0/css/intro.min.css' %}">
+
+{% endblock %}
+
+{% comment %} BLOCO DO CORPO DO HTML {% endcomment %}
+{% block body %}
+
+    {% include 'message.html' %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-default">
+
+                {% comment %} CARD HEADER {% endcomment %}
+                <div class="card-header">
+                    <h3 class="card-title text-black-50">Processar pipelines</h3>
+                </div>
+
+                {% comment %} CARD BODY {% endcomment %}
+                <div class="card-body mt-4">
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="small-box bg-gradient-primary">
+                                <div class="inner">
+                                    <h3>Audiência dos programas</h3>
+                                    <p>Processar informações históricas de audiência de programas que já foram exibidos.</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-table"></i>
+                                </div>
+                                <a href="{% url 'pipeline-audiencia' %}" class="small-box-footer">
+                                    Acessar
+                                    <em class="fas fa-arrow-circle-right ml-2"></em>
+                                </a>
+                            </div>
+                        </div>
+
+                        {% comment %} Processar audiência histórica {% endcomment %}
+                        <div class="col-md-4 col-sm-12">
+                            <div class="small-box bg-gradient-secondary">
+                                <div class="inner">
+                                    <h3>Tempo disponível</h3>
+                                    <p>Processar informações do tempo disponível para anúncios em cada programa.</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-table"></i>
+                                </div>
+                                <a href="{% url 'pipeline-tempo' %}" class="small-box-footer">
+                                    Acessar
+                                    <em class="fas fa-arrow-circle-right ml-2"></em>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
