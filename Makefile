@@ -93,14 +93,14 @@ django-createsuperuser:
 	@docker-compose exec -e DJANGO_SUPERUSER_PASSWORD=admin app python manage.py createsuperuser --username admin --email teste@teste.com --noinput
 	@echo "OK"
 
-django-test:
+django-test: infra-up
 	@printf "Realizando testes... "
-	@docker-compose exec app python manage.py test app --noinput
+	@docker-compose exec app python manage.py test pipeline --noinput
 
 run: infra-up django-collect-static django-migrate django-createsuperuser
 
 coverage: clear
-	@coverage run --source='.' ./app/manage.py test app --noinput
+	@DB_HOST=localhost coverage run --source='.' ./app/manage.py test app --noinput
 	@coverage report --show-missing
 	@coverage xml
 

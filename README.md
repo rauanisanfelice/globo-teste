@@ -26,6 +26,12 @@ Coverage
 make coverage
 ```
 
+Sonar Qube
+
+```shell
+make sonar-scan
+```
+
 ### Executar aplicação
 
 ```shell
