@@ -10,11 +10,13 @@ Teste de avaliação para processo seletivo da Globo.
 
 ### Configurando ambiente local para desenvolvimento
 
-Copiando arquivos "*.example" depois disto preeencha com as informações necessária.s
+Copiando arquivos "*.example" depois disto preeencha com as informações necessária.
 
 ```shell
 make copy-example
 ```
+
+Instalando todas as dependências
 
 ```shell
 make install
@@ -48,7 +50,7 @@ make run
 
 Sobre o projeto foi desenvolvido em Python com framework Django, neste projeto possui duas aplicações para atender o objetivo. A primeira aplicação tem como objetivo processar os dados. A segunda aplicação tem a função de servir os dados importados.
 
-Após executar os comandos da #instruções o sistema irá criar um usuário na projeto de teste, este mesmo deverá ser utilizado nas duas aplicações.
+Após executar os comandos da #instruções o sistema irá criar um usuário de teste no projeto, este mesmo deverá ser utilizado nas duas aplicações.
 
 | Usuário | Senha |
 |---|---|
