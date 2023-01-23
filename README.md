@@ -10,6 +10,12 @@ Teste de avaliação para processo seletivo da Globo.
 
 ### Configurando ambiente local para desenvolvimento
 
+Copiando arquivos "*.example" depois disto preeencha com as informações necessária.s
+
+```shell
+make copy-example
+```
+
 ```shell
 make install
 ```
@@ -37,3 +43,7 @@ make sonar-scan
 ```shell
 make run
 ```
+
+## Projeto
+
+Sobre o projeto foi desenvolvido em Python com framework Django, neste projeto possui duas aplicações para atender o objetivo. A primeira aplicação tem como objetivo processar os dados. A segunda aplicação tem a função de servir os dados importados.
