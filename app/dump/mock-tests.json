@@ -52,5 +52,26 @@
             "groups": [],
             "user_permissions": []
         }
+    },
+    {
+        "model": "pipeline.audiencia",
+        "pk": 1,
+        "fields": {
+            "signal": "SP1",
+            "program_code": "PTV1",
+            "exhibition_date": "2020-06-05",
+            "program_start_time": "2020-06-05T15:01:00Z",
+            "average_audience": "933891.9638554216"
+        }
+    },
+    {
+        "model": "pipeline.tempodisponivel",
+        "pk": 1,
+        "fields": {
+            "signal": "SP1",
+            "program_code": "PTV1",
+            "date": "2020-06-05",
+            "available_time": 10
+        }
     }
 ]
