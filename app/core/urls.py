@@ -9,6 +9,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls"), name="login"),
     path("", include("pipeline.urls")),
+    path("api/", include("api.urls")),
     path(
         "400/",
         bad_request,

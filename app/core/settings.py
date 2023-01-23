@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(os.path.join(BASE_DIR, ".env"))
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
@@ -41,6 +42,7 @@ ADMINS = [
 
 INSTALLED_APPS = [
     "pipeline",
+    "api",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -49,6 +51,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "bootstrap4",
     "whitenoise",
+    "drf_yasg",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "django_filters",
 ]
 
 
@@ -61,6 +67,32 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PARSER_CLASSES": [
+        "rest_framework.parsers.FormParser",
+        "rest_framework.parsers.MultiPartParser",
+        "rest_framework.parsers.JSONParser",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    "MAX_PAGINATE_BY": 100,
+    "COMPACT_JSON": False,
+}
+
+SWAGGER_SETTINGS = {
+    "VALIDATOR_URL": "http://localhost:8000",
+}
 
 ROOT_URLCONF = "core.urls"
 
