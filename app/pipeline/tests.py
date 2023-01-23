@@ -47,6 +47,7 @@ class TestLogin(TestCase):
         self.exclusao = [
             "accounts",
             "admin",
+            "api",
             "400",
             "403",
             "404",

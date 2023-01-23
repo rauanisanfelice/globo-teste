@@ -1,0 +1,28 @@
+@startuml GloboTeste
+
+cloud cloud as "Data Lake" {
+    folder raw as "Storage Raw" {
+
+        file file1
+        file file2
+    }
+    folder trusted as "Storage Trusted" {
+
+        file file1.trusted
+    }
+}
+
+node worker
+database database
+queue mensageria
+node etl
+
+worker -up-> raw: Busca novos arquivos
+worker -down-> database: Insere registros
+worker -right-> mensageria: Insere evento
+
+etl -> database: Atualiza status
+etl <-left-> mensageria: Processa eventos
+etl -up-> trusted: Move arquvio de zona
+
+@enduml
