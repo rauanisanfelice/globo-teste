@@ -1,0 +1,24 @@
+@startuml GloboTeste
+
+cloud cloud as "Data Lake" {
+    folder raw as "Storage Raw" {
+
+        file file1
+        file file2
+    }
+    folder trusted as "Storage Trusted" {
+
+        file file1.trusted
+    }
+}
+
+node worker
+database database
+queue mensageria
+
+raw --> worker
+worker -> database
+database -> mensageria
+mensageria -> trusted
+
+@enduml
