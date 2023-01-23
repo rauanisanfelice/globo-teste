@@ -15,10 +15,14 @@ cloud cloud as "Data Lake" {
 node worker
 database database
 queue mensageria
+node etl
 
-raw --> worker
-worker -> database
-database -> mensageria
-mensageria -> trusted
+worker -up-> raw: Busca novos arquivos
+worker -down-> database: Insere registros
+worker -right-> mensageria: Insere evento
+
+etl -> database: Atualiza status
+etl <-left-> mensageria: Processa eventos
+etl -up-> trusted: Move arquvio de zona
 
 @enduml
